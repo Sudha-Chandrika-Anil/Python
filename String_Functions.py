@@ -1,9 +1,9 @@
-a = input("Enter a String")
+a = input("Enter a String ")
 # Length of string
 print(len(a))
 
 # Find a letter in the given string
-e = input("Enter letter to be searched")
+e = input("Enter letter to be searched ")
 print(a.find(e))
 
 # Capitalize the string
@@ -22,11 +22,11 @@ print(a.isdigit())
 print(a.isalpha())
 
 # Count a letter in the given string
-e = input("Enter letter to be counted")
+e = input("Enter letter to be counted ")
 print(a.count(e))
 
 # Replace a letter in the given string
-r = input("Enter letter to be searched")
+r = input("Enter letter to be replaced ")
 print(a.replace(e,r))
 
 print(a*2)
