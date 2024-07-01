@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CRUD Operations</title>
+    <style>
+        h2 {
+            color: green;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>CRUD Operations</h2>
+
+    <div class="container">
+        <!-- Form for Insert Operation -->
+        <div class="form-group">
+            <form action="process_form.cgi" method="post">
+                <input type="hidden" name="action" value="insert">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+                <input type="submit" value="Insert">
+            </form>
+        </div>
+
+        <!-- Form for Update Operation -->
+        <div class="form-group">
+            <form action="process_form.cgi" method="post">
+                <input type="hidden" name="action" value="update">
+                <label for="update_id">Update ID:</label>
+                <input type="text" id="update_id" name="update_id">
+                <label for="new_name">New Name:</label>
+                <input type="text" id="new_name" name="new_name">
+                <input type="submit" value="Update">
+            </form>
+        </div>
+
+        <!-- Form for Delete Operation -->
+        <div class="form-group">
+            <form action="process_form.cgi" method="post">
+                <input type="hidden" name="action" value="delete">
+                <label for="delete_id">Delete ID:</label>
+                <input type="text" id="delete_id" name="delete_id">
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+
+        <!-- Link to View Operation -->
+        <div class="form-group">
+            <form action="process_form.cgi" method="get">
+                <input type="hidden" name="action" value="view">
+                <input type="submit" value="View Records">
+            </form>
+        </div>
+
+        <!-- Display Area for Database Operations -->
+        <div class="form-group" id="result_area">
+            <!-- Results will be displayed here dynamically -->
+        </div>
+    </div>
+
+    <!-- JavaScript for Dynamic Update -->
+    <script>
+        // Function to dynamically load results into result_area div
+        function loadResults() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        document.getElementById('result_area').innerHTML = xhr.responseText;
+                    } else {
+                        console.error('Error: ' + xhr.status);
+                    }
+                }
+            };
+            xhr.open('GET', 'process_form.cgi?action=view', true);
+            xhr.send();
+        }
+
+        // Call loadResults on page load to initially load records
+        loadResults();
+    </script>
+
+</body>
+</html>
